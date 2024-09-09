@@ -30,4 +30,5 @@
 
 > php artisan make:filament-resource Country
 > php artisan make:filament-resource State --generate
+> ![Cities generated](./public/prinscreens/cities.jpg?raw=true "Cities")
 > php artisan make:filament-resource City --generate --view
