@@ -2,6 +2,8 @@
 
 > https://www.youtube.com/watch?v=6c4jVLWmDYU
 
+> Githyb : https://github.com/tonyxhepa/filamentphp-v3-tutorial
+
 ### Install laravel
 
 > composer create-project laravel/laravel:^10.0 example-app
