@@ -4,6 +4,8 @@
 
 > GitHub : https://github.com/tonyxhepa/filamentphp-v3-tutorial
 
+> This Git: https://github.com/samedan/2409_laravel-filament
+
 ### Install laravel
 
 > composer create-project laravel/laravel:^10.0 example-app
