@@ -34,3 +34,9 @@
 > php artisan make:filament-resource State --generate
 > ![Cities generated](https://github.com/samedan/2409_laravel-filament/blob/main/public/printscreens/cities.jpg)
 > php artisan make:filament-resource City --generate --view
+> ![Cities generated](https://github.com/samedan/2409_laravel-filament/blob/main/public/printscreens/users.jpg)
+
+## Edit Icon & Menu & Slug & Name etc
+
+> CountryResouces.php
+> ![Menu left column](https://github.com/samedan/2409_laravel-filament/blob/main/public/printscreens/menu.jpg)
