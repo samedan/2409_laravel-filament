@@ -61,4 +61,4 @@
 
 > StateResources.php ->add country relationship to 'Select' field
 > Models\State.php -> belongsTo
-> ![Create State](https://github.com/samedan/2409_laravel-filament/blob/main/public/printscreens/create-state.jpg)
+> ![Create State](https://github.com/samedan/2409_laravel-filament/blob/main/public/printscreens/create-states.jpg)
