@@ -32,10 +32,12 @@ class CityResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('state_id')
-                    ->required()
-                    ->numeric(),
+            ->schema([                
+                Forms\Components\Select::make('state_id')
+                    ->relationship(name:'state', titleAttribute:'name')
+                    ->searchable()
+                    ->preload() // preloads countries
+                    ->multiple(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),

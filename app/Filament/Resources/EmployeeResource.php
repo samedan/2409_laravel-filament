@@ -28,6 +28,34 @@ class EmployeeResource extends Resource
                 Forms\Components\Section::make('User Name')
                     ->description('Put the user details in')
                     ->schema([
+                        Forms\Components\Select::make('country_id')
+                            ->relationship(name:'country', titleAttribute:'name')
+                            ->searchable()
+                            ->preload() // preloads countries
+                            ->multiple()                            
+                            ->required(),
+                        Forms\Components\Select::make('state')
+                            ->relationship(name:'state', titleAttribute:'name')
+                            ->searchable()
+                            ->preload() // preloads countries
+                            ->multiple()                            
+                            ->required(),
+                        Forms\Components\Select::make('city')
+                            ->relationship(name:'city', titleAttribute:'name')
+                            ->searchable()
+                            ->preload() // preloads countries
+                            ->multiple()                            
+                            ->required(),
+                        Forms\Components\Select::make('department')
+                            ->relationship(name:'department', titleAttribute:'name')
+                            ->searchable()
+                            ->preload() // preloads countries
+                            ->multiple()                            
+                            ->required(),
+                    ])->columns(3),
+                Forms\Components\Section::make('User Name')
+                    ->description('Put the user details in')
+                    ->schema([
                         Forms\Components\TextInput::make('first_name')
                         ->required()
                         ->maxLength(255),

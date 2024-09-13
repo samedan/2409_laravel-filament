@@ -6,6 +6,8 @@
 
 > This Git: https://github.com/samedan/2409_laravel-filament
 
+> Countries : [laravel-country-states-city-seeds-migration](https://github.com/mshoaibdev/laravel-country-states-city-seeds-migration)
+
 ### Install laravel
 
 > composer create-project laravel/laravel:^10.0 example-app
@@ -28,6 +30,10 @@
 
 > http://127.0.0.1:8000/admin
 
+# Create Admin user
+
+> php artisan make:filament-user
+
 ### Create resources for a model in Filament Directory
 
 > php artisan make:filament-resource Country
@@ -44,3 +50,15 @@
 ## Font, Colors, Logo & Favicon
 
 > AdminPanelProvider.php
+
+### Seed data
+
+> \database\seeders\...
+> php artisan migrate:fresh
+> php artisan db:seed
+
+### Create form - States/Create States
+
+> StateResources.php ->add country relationship to 'Select' field
+> Models\State.php -> belongsTo
+> ![Create State](https://github.com/samedan/2409_laravel-filament/blob/main/public/printscreens/create-state.jpg)
