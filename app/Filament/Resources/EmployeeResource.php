@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\EmployeeResource\Pages;
 use App\Filament\Resources\EmployeeResource\RelationManagers;
+use App\Models\City;
 use App\Models\Employee;
+use App\Models\State;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +14,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Collection;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 
 class EmployeeResource extends Resource
 {
@@ -25,34 +30,49 @@ class EmployeeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('User Name')
+                Forms\Components\Section::make('Relationship')
                     ->description('Put the user details in')
                     ->schema([
                         Forms\Components\Select::make('country_id')
                             ->relationship(name:'country', titleAttribute:'name')
                             ->searchable()
                             ->preload() // preloads countries
-                            ->multiple()                            
+                            // ->multiple()   
+                            ->live() //      
+                            ->afterStateUpdated(function (Set $set) {
+                                    $set('state_id', null);     // set state to null on Country delete                                 
+                                    $set('city_id', null);     // set city to null on Country delete                                 
+                                }) 
                             ->required(),
-                        Forms\Components\Select::make('state')
-                            ->relationship(name:'state', titleAttribute:'name')
+                        Forms\Components\Select::make('state_id')
+                            ->options(fn(Get $get): Collection => 
+                                            State::query()
+                                                ->where('country_id', $get('country_id'))
+                                                ->pluck('name', 'id')
+                                    )
                             ->searchable()
                             ->preload() // preloads countries
-                            ->multiple()                            
+                            // ->multiple()   
+                            ->live()   // live update with State state   
+                            ->afterStateUpdated(fn (Set $set) => $set('city_id', null))     // set state to null on State delete              
                             ->required(),
-                        Forms\Components\Select::make('city')
-                            ->relationship(name:'city', titleAttribute:'name')
+                        Forms\Components\Select::make('city_id')
+                        ->options(fn(Get $get): Collection => 
+                                        City::query()
+                                            ->where('state_id', $get('state_id'))
+                                            ->pluck('name', 'id')
+                                )
                             ->searchable()
                             ->preload() // preloads countries
-                            ->multiple()                            
+                            // ->multiple()                            
                             ->required(),
                         Forms\Components\Select::make('department')
-                            ->relationship(name:'department', titleAttribute:'name')
+                            // ->options()
                             ->searchable()
                             ->preload() // preloads countries
                             ->multiple()                            
                             ->required(),
-                    ])->columns(3),
+                    ])->columns(2),
                 Forms\Components\Section::make('User Name')
                     ->description('Put the user details in')
                     ->schema([
@@ -82,18 +102,7 @@ class EmployeeResource extends Resource
                         Forms\Components\DatePicker::make('date_hired')
                             ->required(),
                     ])->columns(2),
-                Forms\Components\TextInput::make('country_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('state_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('city_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('department_id')
-                    ->required()
-                    ->numeric(),
+               
                 
                 
             ])->columns(3);
