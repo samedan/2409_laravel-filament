@@ -98,6 +98,7 @@ class EmployeeResource extends Resource
                 Forms\Components\Section::make('Dates')
                     ->schema([ 
                         Forms\Components\DatePicker::make('date_of_birth')
+                            ->native(false) // english datepicker
                             ->required(),
                         Forms\Components\DatePicker::make('date_hired')
                             ->required(),

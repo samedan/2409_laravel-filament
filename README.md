@@ -1,6 +1,6 @@
 ### Source Tutorial
 
-> https://www.youtube.com/watch?v=6c4jVLWmDYU
+> https://youtu.be/6c4jVLWmDYU?si=Tc7Meiwub-CbNdOb&t=4510
 
 > GitHub : https://github.com/tonyxhepa/filamentphp-v3-tutorial
 
