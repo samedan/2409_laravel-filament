@@ -40,3 +40,7 @@
 
 > CountryResouces.php
 > ![Menu left column](https://github.com/samedan/2409_laravel-filament/blob/main/public/printscreens/menu.jpg)
+
+## Font, Colors, Logo & Favicon
+
+> AdminPanelProvider.php
